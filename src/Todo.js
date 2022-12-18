@@ -18,8 +18,7 @@ const Todo = (props) => {
 
     //키 입력에 따라 title을 변경.
     const editEventHandler = (e) => {
-        item.title = e.target.value;
-        editItem();
+       setItem({...item, title: e.target.value});// 하나하나 넘어가는것이 아닌 수정 완료시 HTTP 요청 => 수정 불가 상태가 되었을 때.
     };
 
     //deleteItem() 추가를 위해 deleteEventHandler 작성
@@ -33,15 +32,16 @@ const Todo = (props) => {
     //turnOnReadOnly() 작성
     const turnOnReadOnly = (e) =>
     {
-        if(e.key == "Enter"){
+        if(e.key === "Enter" && readOnly === false){
             setReadOnly(true);
+            editItem(item);
         }
-    }
+    };
     //체크 박스 핸들러를 추적해 done 초기화
     const checkboxEventHendler = (e) => {
         item.done = e.target.checked;
-        editItem();
-    }
+        editItem(item);
+    };
 
     //Todo 리스트.
     return (

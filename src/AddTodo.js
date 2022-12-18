@@ -8,14 +8,15 @@ const AddTodo = (props) => {
     const addItem = props.addItem;
 
     //onButtonClick 함수
-    const onButtonClick = (e) => {
+    const onButtonClick = () => {
         addItem(item);//addItem 사용.
+        setItem({title:""});
         console.log(item);
     }
 
     //enterKeyEvenHandler 함수
     const enterKeyEvenHandler = (e) => {
-        if (e.key == 'Enter'){
+        if (e.key === 'Enter'){
             onButtonClick();//함수 재이용
         }
     };
